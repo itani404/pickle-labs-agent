@@ -4,3 +4,5 @@ python-dotenv==1.2.3
 gradio==5.14.0
 huggingface_hub==0.36.2
 pydantic==2.10.3
+langgraph==1.2.16
+langchain-core==1.6.10
