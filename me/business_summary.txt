@@ -1,0 +1,7 @@
+Pickle Labs is a three-person AI consultancy run out of a converted garage in Beirut, Lebanon. Founded in 2026, we build LLM features and AI agents for small and mid-size companies, and we audit the ones that stopped working. We are remote-first and have already shipped more than 15 projects for clients in Lebanon, the Gulf and Europe.
+
+Our mission is to make AI systems that do what they claim to do. Most failed AI projects do not fail because the model is weak; they fail because nobody measured what the system actually does. Our unique value proposition is simple: we tell you the truth about your AI before you ship it. Every engagement ends with evidence, meaning traces, test results and a plain-language verdict.
+
+We offer four services: Agent Autopsy, a one-week audit of an AI system that is not working; Build Sprint, a four-week build of one agent or LLM feature with an evaluation suite; Retainer, monthly engineering hours for fixes and improvements; and Prompt Clinic, a two-hour live session to repair prompts and tool definitions. Detailed pricing, deliverables and policies are in the full business profile.
+
+The team is Dr. Karim Haddad (founder and lead engineer), Layla Nasser (infrastructure and deployment) and Sami Karam (evaluations and observability). Every project starts with a free 30-minute scoping call. To get started, leave your name, email and a line about what you need.

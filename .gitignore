@@ -1,0 +1,14 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Runtime logs (leads, feedback and reflection may contain personal data)
+logs/
+
+# Python / Jupyter / macOS
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+.DS_Store
