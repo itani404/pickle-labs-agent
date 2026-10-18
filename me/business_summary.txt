@@ -4,4 +4,4 @@ Our mission is to make AI systems that do what they claim to do. Most failed AI 
 
 We offer four services: Agent Autopsy, a one-week audit of an AI system that is not working; Build Sprint, a four-week build of one agent or LLM feature with an evaluation suite; Retainer, monthly engineering hours for fixes and improvements; and Prompt Clinic, a two-hour live session to repair prompts and tool definitions. Detailed pricing, deliverables and policies are in the full business profile.
 
-The team is Dr. Karim Haddad (founder and lead engineer), Layla Nasser (infrastructure and deployment) and Sami Karam (evaluations and observability). Every project starts with a free 30-minute scoping call. To get started, leave your name, email and a line about what you need.
+The team is Omar Al Itani (founder and CEO), Ali (infrastructure and deployment) and Youssef (evaluations and observability). Every project starts with a free 30-minute scoping call. To get started, leave your name, email and a line about what you need.

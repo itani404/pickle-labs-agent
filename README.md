@@ -61,7 +61,7 @@ A full run of the notebook (offline tests, a 15-message router test, a seeded re
 ### Persona and instructions (kept separate on purpose)
 
 - **Persona** (cell 3.1): who Dr. Rick is. Tone and style only, no rules.
-- **Instructions** (cell 3.2): ten numbered guardrails, for example "never invent prices", "log what you cannot answer with `record_feedback`", "collect name and email before the conversation ends", "never claim you recorded something unless a tool result confirmed it", "keep replies to two to five sentences and avoid em dashes", and "you are the AI front desk, so speak about Dr. Haddad, Layla and Sami in the third person". Each route adds its own short instruction block on top.
+- **Instructions** (cell 3.2): ten numbered guardrails, for example "never invent prices", "log what you cannot answer with `record_feedback`", "collect name and email before the conversation ends", "never claim you recorded something unless a tool result confirmed it", "keep replies to two to five sentences and avoid em dashes", and "you are the AI front desk, so speak about Omar, Ali and Youssef in the third person". Each route adds its own short instruction block on top.
 
 When the two conflict (a sarcastic character is tempted to guess), the instructions win, and instruction 3 says so.
 
@@ -79,7 +79,7 @@ One LLM call with reasoning effort `none` and `temperature=0`, returning `{"inte
 | `lead_collection` | Collect name, email and what they want, then record | `record_customer_interest`, plus `record_feedback` as a safety net |
 | `feedback_or_unanswered` | Acknowledge, then log the message | `record_feedback` only |
 
-Gating the tools by route is the chapter's "tool gating" idea at small scale. The two open-ended routes also keep the other tool as a safety net, so one misrouted message cannot lose a lead or an unanswered question (a test message with both a question the profile cannot answer and contact details makes the model call both tools).
+Gating the tools by route is the chapter's "tool gating" idea at small scale. The two open-ended routes also keep the other tool as a safety net, so a misrouted message still has the right tool available. Availability is not a guarantee, because the model has to choose to call it: for a test message holding both a question the profile cannot answer and contact details, the model recorded both in one live run and only the question in another. In that second run its draft implied the contact details were saved, and the reflection step caught it and rewrote the reply.
 
 The intent names come from the brief, but the third one is really about **feedback**: whether the knowledge can answer a question is only known after the model has read it, so unanswered questions are logged inside the general route, not by the router.
 
@@ -109,7 +109,7 @@ A seeded test shows it working. The draft "An Agent Autopsy is only 499 dollars 
 ## What was tested
 
 - **Offline** (no API, no cost): usage meter, knowledge loading, prompt assembly, both tools and the dispatcher (valid calls, duplicates, bad email, empty fields, unknown tool, missing, extra and wrongly typed arguments, bad JSON, tool not allowed on a route), the agent loop with a scripted fake model (plain text, tool call, tool error recovery, disallowed tool, round cap, history cleaning), router parsing, reflection parsing and the full chat turn.
-- **Live** (`gpt-6-luna`): the 25-message router table, the seeded reflection test, and eight conversations: an answer from the summary and one only the PDF has, a SOC 2 question the knowledge cannot answer (logged), a lead over two messages (recorded once), a lead with a malformed email followed by the corrected one, a lead who never said what they want (the assistant asks instead of guessing), a bug report (logged), an attempt to talk it into a 90% discount (no discount invented, stays in role, not logged as a question), and one message that holds both an unanswerable question and contact details (both tools fire).
+- **Live** (`gpt-6-luna`): the 25-message router table, the seeded reflection test, and eight conversations: an answer from the summary and one only the PDF has, a SOC 2 question the knowledge cannot answer (logged), a lead over two messages (recorded once), a lead with a malformed email followed by the corrected one, a lead who never said what they want (the assistant asks instead of guessing), a bug report (logged), an attempt to talk it into a 90% discount (no discount invented, stays in role, not logged as a question), and one message that holds both an unanswerable question and contact details (the model recorded both in one run and only the question in another, where reflection caught the unconfirmed claim).
 - **Interface:** the Gradio app was driven through its HTTP API with both a fake and the real model. It also installs and runs from scratch in a clean virtual environment with the pinned requirements.
 
 ## Notes and decisions
