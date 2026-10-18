@@ -33,7 +33,7 @@ START -> prepare -> think --+--(answer)--> finish -> END
 
 - `think` asks the model for the next step and runs my own parser on its text. The model writes `Thought:`, `Action:`, `Action Input:` (a JSON object) or `Answer:`.
 - `act` runs the detected tool and appends `Observation: {...}`; `repair` feeds a parse error back to the model; guards stop a run after 6 model calls or 2 unreadable replies.
-- The parser is where the brief's "detect when the model suggests an action" lives. It handles labels glued onto one line, markdown decoration, code-fenced JSON, invented `Observation:` lines, answers written ahead of the observation, and truncated replies (21 test cases and graph tests in the notebook).
+- The parser is where the brief's "detect when the model suggests an action" lives. It handles labels glued onto one line, markdown decoration, code-fenced JSON, invented `Observation:` lines, answers written ahead of the observation, and truncated replies (25 test cases and a set of graph tests in the notebook).
 
 ### Tools
 
