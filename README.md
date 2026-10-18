@@ -70,7 +70,7 @@ A dedicated block written to the Chapter 4 guidelines: goal, action and transiti
 
 ```
 pickle-labs-agent/
-├── Itani_ReAct_Personas_Assignment.ipynb   The C4 deliverable (59 cells, with stored outputs)
+├── Itani_ReAct_Personas_Assignment.ipynb   The C4 deliverable (60 cells, with stored outputs)
 ├── experiments/                            One JSONL file per arm (3,204 runs with full traces) and sampling_study.jsonl
 ├── requirements.txt                        Pinned libraries (adds langgraph 1.2.16 and langchain-core 1.6.10)
 ├── business_agent.ipynb                    The C3 notebook, unchanged
