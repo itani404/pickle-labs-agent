@@ -1,5 +1,16 @@
 # Pickle Labs Agent
 
+Course project for **EECE 503P/798S Agentic Systems** (AUB, Fall 2026) by Omar Al Itani. This one repository holds **two assignments, one branch each**:
+
+| Assignment | Where to look | What it is |
+| --- | --- | --- |
+| **C3: Introduction to Agents** | branch [`assignment-3`](https://github.com/itani404/pickle-labs-agent/tree/assignment-3) | A business assistant with a router, two tools, a reflection step and a Gradio demo |
+| **C4: Agent Personas and Thinking Mechanisms** | branch [`assignment-4`](https://github.com/itani404/pickle-labs-agent/tree/assignment-4) | A hand-written ReAct agent with configurable personas, built on top of the C3 project |
+
+For **Assignment C3**, check the `assignment-3` branch. For **Assignment C4**, check the `assignment-4` branch. The `main` branch also shows the Assignment C3 project, with the same content as `assignment-3`, and its README is the rest of this page. The C4 branch is built on top of the C3 project, so it also contains the C3 notebook unchanged, and it has its own README that explains the C4 design, results and how to run it.
+
+## Assignment C3: the Pickle Labs business assistant
+
 An agent-powered business assistant for **Pickle Labs**, a fictional three-person AI consultancy run out of a garage in Beirut. The assistant is **Dr. Rick**, a sarcastic, brilliant front-desk AI. It answers questions about the business from a PDF profile and a summary, routes every message to the right kind of handling, collects leads, logs feedback and unanswered questions through tool calls, and double-checks its own replies before sending them. It runs on the OpenAI API (`gpt-6-luna`) and is demoed through a Gradio chat interface.
 
 Course: EECE 503P/798S Agentic Systems, Assignment C3 (Introduction to Agents).
