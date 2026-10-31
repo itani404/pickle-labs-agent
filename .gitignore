@@ -12,3 +12,6 @@ __pycache__/
 .venv/
 .ipynb_checkpoints/
 .DS_Store
+
+# Study branch
+.pytest_cache/

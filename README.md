@@ -1,5 +1,7 @@
 # Pickle Labs Agent
 
+> **Local study branch `study/c3`.** The C3 notebook below is rewritten as the `pickle_agent/` package; see [PORTING.md](PORTING.md) for where every cell went. The notebook itself is on `main`.
+
 Course project for **EECE 503P/798S Agentic Systems** (AUB, Fall 2026) by Omar Al Itani. This one repository holds **two assignments, one branch each**:
 
 | Assignment | Where to look | What it is |
