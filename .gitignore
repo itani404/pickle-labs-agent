@@ -12,3 +12,7 @@ __pycache__/
 .venv/
 .ipynb_checkpoints/
 .DS_Store
+
+# Assignment C5: messages the MCP server delivers
+outbox/
+.pytest_cache/

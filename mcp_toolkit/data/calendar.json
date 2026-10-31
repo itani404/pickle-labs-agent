@@ -1,0 +1,20 @@
+{
+  "timezone": "Asia/Beirut",
+  "working_hours": {"start": "09:00", "end": "18:00"},
+  "slot_minutes": 30,
+  "consultants": ["Omar", "Ali"],
+  "weekly_busy": [
+    {"consultant": "Omar", "weekday": "Monday", "start": "09:00", "end": "12:00", "title": "Build Sprint stand-up and pairing"},
+    {"consultant": "Omar", "weekday": "Monday", "start": "13:00", "end": "18:00", "title": "Build Sprint client work"},
+    {"consultant": "Ali", "weekday": "Monday", "start": "09:00", "end": "16:30", "title": "Deployment window"},
+    {"consultant": "Omar", "weekday": "Tuesday", "start": "09:00", "end": "11:00", "title": "Agent Autopsy review"},
+    {"consultant": "Omar", "weekday": "Tuesday", "start": "13:00", "end": "18:00", "title": "Agent Autopsy review"},
+    {"consultant": "Ali", "weekday": "Tuesday", "start": "09:00", "end": "18:00", "title": "Retainer on-call"},
+    {"consultant": "Omar", "weekday": "Wednesday", "start": "09:00", "end": "14:00", "title": "Prompt Clinic"},
+    {"consultant": "Ali", "weekday": "Wednesday", "start": "11:00", "end": "18:00", "title": "Infrastructure migration"},
+    {"consultant": "Omar", "weekday": "Thursday", "start": "09:00", "end": "18:00", "title": "Client workshop"},
+    {"consultant": "Ali", "weekday": "Thursday", "start": "09:00", "end": "15:00", "title": "Monitoring review"},
+    {"consultant": "Omar", "weekday": "Friday", "start": "09:00", "end": "18:00", "title": "Readout calls and invoicing"},
+    {"consultant": "Ali", "weekday": "Friday", "start": "09:00", "end": "18:00", "title": "Release day"}
+  ]
+}
