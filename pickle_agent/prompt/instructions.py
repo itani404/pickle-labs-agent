@@ -1,4 +1,4 @@
-"""INSTRUCTIONS: the operational guardrails (notebook section 3.2, cell 10).
+"""Step 3. INSTRUCTIONS: the operational guardrails (notebook section 3.2, cell 10).
 
 Rules only, one per line, no personality. The general instructions apply on every route; the route
 instructions are added on top of them for one intent only, and they are what the router's decision changes.

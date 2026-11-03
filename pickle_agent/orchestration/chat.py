@@ -1,16 +1,17 @@
-"""One full chat turn: router, then the tool loop for that route, then reflection (notebook section 8, cell 31)."""
+"""Step 15. One full chat turn: router, then the tool loop for that route, then reflection (notebook section 8, cell 31)."""
 
 import json
 
-from . import config
-from .agent_loop import FALLBACK_REPLY, TRACE_MARKER, agent_turn
+from ..config import settings
+from ..loop.agent_loop import FALLBACK_REPLY, agent_turn
+from ..memory.history import TRACE_MARKER
 from .reflection import reflect
 from .router import classify_intent
 
 
 def chat_turn(user_message, history, reflection=None, llm=None):
     """Router, then the agent loop for that route, then (optionally) reflection."""
-    use_reflection = config.REFLECTION if reflection is None else reflection
+    use_reflection = settings.REFLECTION if reflection is None else reflection
     routing = classify_intent(user_message, history, llm)
     draft, tool_trace = agent_turn(user_message, history, routing["intent"], llm)
     review = None

@@ -10,13 +10,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pytest  # noqa: E402
 
-from pickle_agent import config, logbook  # noqa: E402
+from pickle_agent.config import settings  # noqa: E402
+from pickle_agent.tools import logbook  # noqa: E402
 
 
 @pytest.fixture
 def tmp_logs(tmp_path, monkeypatch):
     """The notebook swapped LOG_DIR and QUIET_LOGS inside try/finally; this does the same per test."""
-    monkeypatch.setattr(config, "LOG_DIR", tmp_path)
+    monkeypatch.setattr(settings, "LOG_DIR", tmp_path)
     monkeypatch.setattr(logbook, "QUIET_LOGS", True)
     return tmp_path
 

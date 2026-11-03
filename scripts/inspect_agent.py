@@ -9,14 +9,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from pickle_agent import config  # noqa: E402
-from pickle_agent.instructions import INSTRUCTIONS, ROUTE_INSTRUCTIONS  # noqa: E402
-from pickle_agent.knowledge import BUSINESS_PDF, BUSINESS_SUMMARY  # noqa: E402
-from pickle_agent.persona import PERSONA  # noqa: E402
-from pickle_agent.system_prompt import build_system_prompt, show_prompt  # noqa: E402
-from pickle_agent.tools import print_tool_docs  # noqa: E402
+from pickle_agent.config import settings  # noqa: E402
+from pickle_agent.prompt.instructions import INSTRUCTIONS, ROUTE_INSTRUCTIONS  # noqa: E402
+from pickle_agent.prompt.knowledge import BUSINESS_PDF, BUSINESS_SUMMARY  # noqa: E402
+from pickle_agent.prompt.persona import PERSONA  # noqa: E402
+from pickle_agent.prompt.system_prompt import build_system_prompt, show_prompt  # noqa: E402
+from pickle_agent.tools.gating import print_tool_docs  # noqa: E402
 
-config.describe()
+settings.describe()
 
 print(f"\nsummary: {len(BUSINESS_SUMMARY)} characters, about {len(BUSINESS_SUMMARY) // 4} tokens")
 print(f"pdf:     {len(BUSINESS_PDF)} characters, about {len(BUSINESS_PDF) // 4} tokens")

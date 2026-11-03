@@ -1,13 +1,13 @@
-"""The router: one lightweight LLM call that picks one of three intents (notebook section 6, cell 22).
+"""Step 13. The router: one lightweight LLM call that picks one of three intents (notebook section 6, cell 22).
 
 In Chapter 3 terms this is the routing workflow pattern (a fixed path chosen by a classifier), while the
-tool loop inside each route (agent_loop.py) is the agent part. Unparseable output falls back to
+tool loop inside each route (loop/agent_loop.py) is the agent part. Unparseable output falls back to
 general_question and says so.
 """
 
-from . import config
-from .agent_loop import clean_history
-from .llm import extract_json, llm_call
+from ..config import settings
+from ..llm.call import extract_json, llm_call
+from ..memory.history import clean_history
 
 ROUTER_PROMPT = """You classify one customer message sent to the chat assistant of Pickle Labs, an AI consultancy.
 Choose exactly one intent:
@@ -31,7 +31,7 @@ Reply with JSON only: {"intent": "<one of the three>", "reason": "<five words or
 def parse_router_output(text):
     """Return (intent, reason, parsed_ok). Anything unparseable falls back to general_question."""
     data = extract_json(text)
-    if data and data.get("intent") in config.INTENTS:
+    if data and data.get("intent") in settings.INTENTS:
         return data["intent"], str(data.get("reason", "")).strip(), True
     return "general_question", "router output could not be parsed, defaulted", False
 
@@ -41,7 +41,7 @@ def classify_intent(message, history, llm=None):
     recent = clean_history(history)[-4:]
     transcript = "\n".join(f"{m['role']}: {m['content'][:300]}" for m in recent) or "(no earlier messages)"
     payload = f"Recent conversation:\n{transcript}\n\nNew message: {message}"
-    out = llm(ROUTER_PROMPT, [{"role": "user", "content": payload}], None, effort=config.ROUTER_EFFORT,
-              max_output=config.ROUTER_MAX_OUTPUT, temperature=0, label="router")
+    out = llm(ROUTER_PROMPT, [{"role": "user", "content": payload}], None, effort=settings.ROUTER_EFFORT,
+              max_output=settings.ROUTER_MAX_OUTPUT, temperature=0, label="router")
     intent, reason, parsed_ok = parse_router_output(out["text"])
     return {"intent": intent, "reason": reason, "parsed_ok": parsed_ok}

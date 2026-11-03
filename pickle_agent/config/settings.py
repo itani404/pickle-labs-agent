@@ -1,4 +1,4 @@
-"""All settings in one place (notebook section 1, cell 2)."""
+"""Step 1. Settings: all settings in one place (notebook section 1, cell 2)."""
 
 import os
 from pathlib import Path
@@ -29,7 +29,7 @@ PRICES_PER_M = {            # USD per 1M tokens (OpenAI pricing page, 17 Oct 202
 }
 
 # Paths. The notebook used Path.cwd(); a package uses its own location so it runs from any folder.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ME_DIR = BASE_DIR / "me"
 LOG_DIR = BASE_DIR / "logs"     # read at call time by logbook.log_event, so tests can point it elsewhere
 

@@ -1,4 +1,4 @@
-"""The system prompt: persona + instructions + route instructions + business knowledge (notebook section 3.3, cell 12)."""
+"""Step 5. The system prompt: persona + instructions + route instructions + business knowledge (notebook section 3.3, cell 12)."""
 
 from .instructions import INSTRUCTIONS, ROUTE_INSTRUCTIONS
 from .knowledge import BUSINESS_PDF, BUSINESS_SUMMARY

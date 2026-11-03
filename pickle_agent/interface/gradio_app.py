@@ -1,16 +1,16 @@
-"""Gradio chat interface (notebook section 9, cells 35 and 36).
+"""Step 16. Gradio chat interface (notebook section 9, cells 35 and 36).
 
 Each answer is preceded by a collapsible "Router and tools" message. The trace messages are display-only:
 clean_history drops them before the history goes back to the model.
 
-Run:  python -m pickle_agent.app
+Run:  python -m pickle_agent.interface.gradio_app
 """
 
 import gradio as gr
 
-from . import config
-from .chat import chat_turn, format_trace
-from .usage import LiveCallLimit, OfflineModeError
+from ..config import settings
+from ..llm.client import LiveCallLimit, OfflineModeError
+from ..orchestration.chat import chat_turn, format_trace
 
 
 def gradio_chat(message, history, use_reflection):
@@ -29,7 +29,7 @@ def build_demo():
     return gr.ChatInterface(
         gradio_chat,
         type="messages",
-        additional_inputs=[gr.Checkbox(value=config.REFLECTION, label="Reflection step (the model checks its draft before replying)")],
+        additional_inputs=[gr.Checkbox(value=settings.REFLECTION, label="Reflection step (the model checks its draft before replying)")],
         title="Pickle Labs: ask Dr. Rick",
         description="The front-desk AI of Pickle Labs. Ask about services and pricing, leave your details for a scoping call, or send feedback.",
         examples=[
@@ -44,5 +44,5 @@ def build_demo():
 
 
 if __name__ == "__main__":
-    config.describe()
+    settings.describe()
     build_demo().launch()

@@ -3,9 +3,10 @@
 import json
 
 from conftest import FakeLLM, text_answer, tool_answer
-from pickle_agent import config
-from pickle_agent.agent_loop import FALLBACK_REPLY, agent_turn, clean_history
-from pickle_agent.logbook import read_log
+from pickle_agent.config import settings
+from pickle_agent.loop.agent_loop import FALLBACK_REPLY, agent_turn
+from pickle_agent.memory.history import clean_history
+from pickle_agent.tools.logbook import read_log
 
 
 def test_plain_text_turn_carries_history_and_gates_tools(tmp_logs):
@@ -61,10 +62,10 @@ def test_disallowed_tool_is_refused_and_safety_net_works(tmp_logs):
 
 
 def test_round_cap_withholds_tools_on_last_round(tmp_logs):
-    endless = [tool_answer("record_feedback", {"question": f"q{n}"}, f"c{n}") for n in range(config.MAX_TOOL_ROUNDS)]
+    endless = [tool_answer("record_feedback", {"question": f"q{n}"}, f"c{n}") for n in range(settings.MAX_TOOL_ROUNDS)]
     fake = FakeLLM(*endless, tool_answer("record_feedback", {"question": "last"}, "c_last"))
     reply, trace = agent_turn("loop", [], "general_question", llm=fake)
-    assert reply == FALLBACK_REPLY and fake.calls[-1]["tools"] is None and len(fake.calls) == config.MAX_TOOL_ROUNDS + 1
+    assert reply == FALLBACK_REPLY and fake.calls[-1]["tools"] is None and len(fake.calls) == settings.MAX_TOOL_ROUNDS + 1
 
 
 def test_history_cleaning():
@@ -74,5 +75,5 @@ def test_history_cleaning():
               {"role": "assistant", "content": "**Router:** `general_question` (metadata lost)"}]
              + [{"role": "user", "content": f"u{n}"} for n in range(30)])
     cleaned = clean_history(messy)
-    assert len(cleaned) <= config.HISTORY_LIMIT and cleaned[0]["role"] == "user"
+    assert len(cleaned) <= settings.HISTORY_LIMIT and cleaned[0]["role"] == "user"
     assert [m["content"] for m in clean_history(messy[:5])] == ["q", "a"]       # trace messages are gone, even without metadata

@@ -1,11 +1,11 @@
 """Router parsing (cell 23), reflection parsing (cell 28) and the full chat turn (cell 32). No API calls."""
 
 from conftest import FakeLLM, text_answer, tool_answer
-from pickle_agent import config
-from pickle_agent.chat import chat_turn, format_trace
-from pickle_agent.logbook import read_log
-from pickle_agent.reflection import reflect
-from pickle_agent.router import classify_intent, parse_router_output
+from pickle_agent.config import settings
+from pickle_agent.orchestration.chat import chat_turn, format_trace
+from pickle_agent.tools.logbook import read_log
+from pickle_agent.orchestration.reflection import reflect
+from pickle_agent.orchestration.router import classify_intent, parse_router_output
 
 
 def test_router_parsing_and_prompt():
@@ -23,7 +23,7 @@ def test_router_parsing_and_prompt():
     call = fake.calls[0]
     assert result == {"intent": "lead_collection", "reason": "gives email", "parsed_ok": True}
     assert "What are your name and email?" in call["items"][0]["content"] and "New message: sam@reed.dev" in call["items"][0]["content"]
-    assert call["temperature"] == 0 and call["effort"] == config.ROUTER_EFFORT and call["tools"] is None
+    assert call["temperature"] == 0 and call["effort"] == settings.ROUTER_EFFORT and call["tools"] is None
 
 
 def test_reflection_parsing(tmp_logs):
@@ -82,5 +82,5 @@ def test_full_chat_turn(tmp_logs):
 
 
 def test_gradio_app_builds():
-    from pickle_agent.app import build_demo
+    from pickle_agent.interface.gradio_app import build_demo
     assert build_demo() is not None

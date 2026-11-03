@@ -10,9 +10,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from pickle_agent import config  # noqa: E402
-from pickle_agent.router import classify_intent  # noqa: E402
-from pickle_agent.usage import meter  # noqa: E402
+from pickle_agent.config import settings  # noqa: E402
+from pickle_agent.orchestration.router import classify_intent  # noqa: E402
+from pickle_agent.llm.client import meter  # noqa: E402
 
 LEAD_HISTORY = [{"role": "user", "content": "I'd like to start a Build Sprint."},
                 {"role": "assistant", "content": "Fine. I need your name and your email."}]
@@ -52,7 +52,7 @@ ROUTER_TESTS = [(*t, "development") for t in DEV_TESTS] + [(*t, "held-out") for 
 
 if __name__ == "__main__":
     ROUTER_RESULTS = []
-    if config.OFFLINE:
+    if settings.OFFLINE:
         print("offline mode: router table skipped (it needs real calls)")
         sys.exit(0)
     print(f"{'set':<12} {'expected':<24} {'actual':<24} {'ok':<3} message")

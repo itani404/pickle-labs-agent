@@ -4,13 +4,13 @@ from types import SimpleNamespace as NS
 
 import pytest
 
-from pickle_agent import config
-from pickle_agent.instructions import INSTRUCTION_LINES
-from pickle_agent.knowledge import BUSINESS_PDF, BUSINESS_SUMMARY
-from pickle_agent.system_prompt import build_system_prompt
-from pickle_agent.usage import LiveCallLimit, OfflineModeError, UsageMeter
+from pickle_agent.config import settings
+from pickle_agent.prompt.instructions import INSTRUCTION_LINES
+from pickle_agent.prompt.knowledge import BUSINESS_PDF, BUSINESS_SUMMARY
+from pickle_agent.prompt.system_prompt import build_system_prompt
+from pickle_agent.llm.client import LiveCallLimit, OfflineModeError, UsageMeter
 
-MODEL_ID, PRICES_PER_M = config.MODEL_ID, config.PRICES_PER_M
+MODEL_ID, PRICES_PER_M = settings.MODEL_ID, settings.PRICES_PER_M
 
 
 def test_usage_meter():
@@ -48,5 +48,5 @@ def test_system_prompt_covers_required_behaviours():
     assert "<business_summary>" in full and "<business_profile_pdf>" in full and "4,500" in full   # summary and PDF
     assert "record_feedback" in INSTRUCTION_LINES[1]                     # logs unknown questions via a tool
     assert "name and email" in INSTRUCTION_LINES[3]                      # encourages leads to leave contact info
-    assert all(f'intent="{route}"' in build_system_prompt(route) for route in config.INTENTS)
+    assert all(f'intent="{route}"' in build_system_prompt(route) for route in settings.INTENTS)
     assert "intent=" not in build_system_prompt()                        # no route block without a route

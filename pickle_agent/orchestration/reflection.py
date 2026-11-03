@@ -1,4 +1,4 @@
-"""Reflection (bonus): a second call reviews the draft before it is sent (notebook section 7, cell 27).
+"""Step 14. Reflection (bonus): a second call reviews the draft before it is sent (notebook section 7, cell 27).
 
 If the draft is fine it is sent unchanged; otherwise the reviewer lists the issues and writes a revised
 reply. Every review is logged to logs/reflection.jsonl. A broken reviewer never blocks the reply.
@@ -6,11 +6,11 @@ reply. Every review is logged to logs/reflection.jsonl. A broken reviewer never 
 
 import json
 
-from .agent_loop import clean_history
-from .instructions import INSTRUCTIONS
-from .knowledge import BUSINESS_PDF, BUSINESS_SUMMARY
-from .llm import extract_json, llm_call
-from .logbook import log_event
+from ..llm.call import extract_json, llm_call
+from ..memory.history import clean_history
+from ..prompt.instructions import INSTRUCTIONS
+from ..prompt.knowledge import BUSINESS_PDF, BUSINESS_SUMMARY
+from ..tools.logbook import log_event
 
 REFLECT_PROMPT = """You are a strict reviewer of a draft reply written by the chat assistant of Pickle Labs.
 You receive the assistant's instructions, the business knowledge, the earlier conversation, the customer's message, the tools called this turn (with their results) and the draft.

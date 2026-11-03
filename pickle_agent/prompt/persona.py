@@ -1,4 +1,4 @@
-"""PERSONA: who the agent is (notebook section 3.1, cell 8).
+"""Step 2. PERSONA: who the agent is (notebook section 3.1, cell 8).
 
 Identity, tone and style only. There are no rules in this block; the rules live in instructions.py.
 """

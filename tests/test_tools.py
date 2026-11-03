@@ -1,7 +1,7 @@
 """Both tools and the dispatcher (notebook cell 16). Logs go to a temporary folder."""
 
-from pickle_agent.logbook import read_log
-from pickle_agent.tools import dispatch
+from pickle_agent.tools.logbook import read_log
+from pickle_agent.tools.dispatcher import dispatch
 
 
 def test_tools_and_dispatcher(tmp_logs):

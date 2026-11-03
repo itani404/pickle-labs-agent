@@ -10,10 +10,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from pickle_agent import config  # noqa: E402
-from pickle_agent.chat import run_conversation  # noqa: E402
-from pickle_agent.reflection import reflect  # noqa: E402
-from pickle_agent.usage import meter  # noqa: E402
+from pickle_agent.config import settings  # noqa: E402
+from pickle_agent.orchestration.chat import run_conversation  # noqa: E402
+from pickle_agent.orchestration.reflection import reflect  # noqa: E402
+from pickle_agent.llm.client import meter  # noqa: E402
 
 SCENARIOS = [
     ("1. Answer from the summary and from the PDF only",
@@ -49,7 +49,7 @@ def seeded_reflection_demo():
 
 
 if __name__ == "__main__":
-    if config.OFFLINE:
+    if settings.OFFLINE:
         print("offline mode: live scenarios skipped (they need real calls)")
         sys.exit(0)
     seeded_reflection_demo()

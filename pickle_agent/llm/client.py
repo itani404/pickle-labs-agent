@@ -1,6 +1,6 @@
-"""Usage meter, offline switch and the lazily created OpenAI client (notebook section 1, cell 3)."""
+"""Step 11. Usage meter, offline switch and the lazily created OpenAI client (notebook section 1, cell 3)."""
 
-from . import config
+from ..config import settings
 
 
 class OfflineModeError(RuntimeError):
@@ -52,8 +52,8 @@ class UsageMeter:
         print(f"{len(self.rows)} API calls, total ${self.total_cost():.5f}")
 
 
-assert config.MODEL_ID in config.PRICES_PER_M, f"add a price row for {config.MODEL_ID} to PRICES_PER_M so cost can be tracked"
-meter = UsageMeter(config.PRICES_PER_M, config.MAX_LIVE_CALLS, config.MAX_COST_USD, offline=config.OFFLINE)
+assert settings.MODEL_ID in settings.PRICES_PER_M, f"add a price row for {settings.MODEL_ID} to PRICES_PER_M so cost can be tracked"
+meter = UsageMeter(settings.PRICES_PER_M, settings.MAX_LIVE_CALLS, settings.MAX_COST_USD, offline=settings.OFFLINE)
 _client = None
 
 
